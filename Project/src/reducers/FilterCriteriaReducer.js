@@ -1,8 +1,5 @@
 import _ from 'lodash';
-import {
-  SET_AGE_RANGE,
-  SET_YEARS_ACTIVE_RANGE
-} from '../actions/types';
+import { SET_AGE_RANGE, SET_YEARS_ACTIVE_RANGE } from '../actions/types';
 
 const INITIAL_STATE = {
   age: { min: 0, max: 100 }

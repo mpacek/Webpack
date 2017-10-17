@@ -69,16 +69,14 @@ class ArtistEdit extends Component {
             placeholder="Genre"
           />
         </div>
-        <div className="has-error">
-          {this.props.errorMessage}
-        </div>
+        <div className="has-error">{this.props.errorMessage}</div>
         <button className="btn">Submit</button>
       </form>
     );
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     artist: state.artists.artist,
     errorMessage: state.errors

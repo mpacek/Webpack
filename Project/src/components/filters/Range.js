@@ -23,7 +23,7 @@ class Range extends Component {
       </div>
     );
   }
-};
+}
 
 Range.defaultProps = {
   range: { min: 0, max: 100 }
