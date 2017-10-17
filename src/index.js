@@ -1,5 +1,10 @@
-import sum from './sum';
-import './image_viewer'; // no export, so we can simply import it ad run
+const button = document.createElement('button');
+button.innerText = 'Click me';
+button.onclick = () => {
+  System.import('./image_viewer') // System is a global es6 variable
+    .then(module => {
+      module.default();
+    });
+};
 
-const total = sum(10, 5);
-console.log(total);
+document.body.appendChild(button);
