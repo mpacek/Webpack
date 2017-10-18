@@ -21,7 +21,7 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: '[name].js' // It will produce bundle.js, and vendor.js files
+    filename: '[name].[chunkhash].js' // It will produce bundle.js, and vendor.js files
   },
   module: {
     rules: [
@@ -40,9 +40,9 @@ module.exports = {
     // resolve the issue with the same libraries in bundle.js and vendor.js,
     // it removes libraries which are present in vendor.js from bundle.js
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor'
+      name: ['vendor', 'manifest']
     }),
-    // this plugin will add automaticly correct <script> tags into the html document
+    // this plugin will add automaticly<script> tags into the html document
     new HtmlWebpackPlugin({
       template: 'src/index.html'
     })
