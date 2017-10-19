@@ -1,11 +1,22 @@
 const express = require('express');
-const webpackMiddleware = require('webpack-dev-middleware');
-const webpack = require('webpack');
-const webpackConfig = require('./webpack.config.js');
+const path = require('path');
 
 const app = express();
 
-// This will add configuration to serve project files, reload it on change etc.
-app.use(webpackMiddleware(webpack(webpackConfig)));
+// Server routes...
+// app.get('/hello', (req, res) => res.send({ hi: 'there' }));
 
-app.listen(3050, () => console.log('Listening'));
+if (process.env.NODE_ENV !== 'production') {
+  const webpackMiddleware = require('webpack-dev-middleware');
+  const webpack = require('webpack');
+  const webpackConfig = require('./webpack.config.js');
+  // This will add configuration to serve project files, reload it on change etc.
+  app.use(webpackMiddleware(webpack(webpackConfig)));
+} else {
+  app.use(express.static('dist'));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist/index.html'));
+  });
+}
+
+app.listen(process.env.PORT || 3050, () => console.log('Listening'));
